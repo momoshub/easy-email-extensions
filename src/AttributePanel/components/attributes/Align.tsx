@@ -1,25 +1,19 @@
-import React from 'react';
-import { useFocusIdx } from 'easy-email-editor';
+import React, { useMemo } from 'react';
+import { Stack, useFocusIdx } from 'easy-email-editor';
 import { RadioGroupField } from '../../../components/Form';
 
 const options = [
   {
     value: 'left',
-    get label() {
-      return t('left');
-    },
+    label: 'left',
   },
   {
     value: 'center',
-    get label() {
-      return t('center');
-    },
+    label: 'center',
   },
   {
     value: 'right',
-    get label() {
-      return t('right');
-    },
+    label: 'right',
   },
 ];
 
@@ -28,7 +22,7 @@ export function Align({ inline }: { inline?: boolean }) {
 
   return (
     <RadioGroupField
-      label={t('Align')}
+      label='Align'
       name={`${focusIdx}.attributes.align`}
       options={options}
     />

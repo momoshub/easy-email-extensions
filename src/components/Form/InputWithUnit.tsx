@@ -1,12 +1,16 @@
-import { InputProps as ArcoInputProps } from '@arco-design/web-react';
-import React from 'react';
+import {
+  Input as ArcoInput,
+  InputProps as ArcoInputProps,
+  Select,
+} from '@arco-design/web-react';
+import React, { useCallback, useMemo } from 'react';
+import styles from './index.module.scss';
 import { Input } from './Input';
 
 export interface InputWithUnitProps extends Omit<ArcoInputProps, 'onChange'> {
   value: string;
   onChange: (val: string) => void;
   unitOptions?: Array<{ value: string; label: string }> | 'default' | 'percent';
-  quickchange?: boolean;
 }
 
 const defaultUnitOptions = [

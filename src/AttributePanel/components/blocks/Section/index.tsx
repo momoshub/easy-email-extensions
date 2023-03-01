@@ -1,7 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Padding } from '@extensions/AttributePanel/components/attributes/Padding';
 import { Background } from '@extensions/AttributePanel/components/attributes/Background';
 import { Border } from '@extensions/AttributePanel/components/attributes/Border';
+import { useCallback } from 'react';
 import { AttributesPanelWrapper } from '@extensions/AttributePanel/components/attributes/AttributesPanelWrapper';
 import { Collapse, Grid, Space, Switch } from '@arco-design/web-react';
 import { Stack, useBlock } from 'easy-email-editor';
@@ -45,17 +46,23 @@ export function Section() {
   return (
     <AttributesPanelWrapper style={{ padding: 0 }}>
       <CollapseWrapper defaultActiveKey={['0', '1', '2']}>
-        <Collapse.Item name='0' header={t('Dimension')}>
+        <Collapse.Item name='0' header='Dimension'>
           <Space direction='vertical'>
             <Grid.Row>
               <Grid.Col span={12}>
-                <label style={{ width: '100%', display: 'flex' }}>
-                  <div style={{ flex: 1 }}>{t('Group')}</div>
+
+                <label
+
+                  style={{ width: '100%', display: 'flex' }}
+                >
+
+                  <div style={{ flex: 1 }}>Group</div>
                 </label>
+
                 <Switch
                   checked={noWrap}
-                  checkedText={t('True')}
-                  uncheckedText={t('False')}
+                  checkedText='True'
+                  uncheckedText='False'
                   onChange={onChange}
                 />
               </Grid.Col>
@@ -65,15 +72,15 @@ export function Section() {
             <Padding />
           </Space>
         </Collapse.Item>
-        <Collapse.Item name='1' header={t('Background')}>
+        <Collapse.Item name='1' header='Background'>
           <Stack vertical spacing='tight'>
             <Background />
           </Stack>
         </Collapse.Item>
-        <Collapse.Item name='2' header={t('Border')}>
+        <Collapse.Item name='2' header='Border'>
           <Border />
         </Collapse.Item>
-        <Collapse.Item name='4' header={t('Extra')}>
+        <Collapse.Item name='4' header='Extra'>
           <Grid.Col span={24}>
             <ClassName />
           </Grid.Col>

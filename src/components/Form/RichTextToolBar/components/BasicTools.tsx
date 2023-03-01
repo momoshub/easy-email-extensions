@@ -43,26 +43,26 @@ export function BasicTools() {
       <span style={{ position: 'relative', marginRight: 10, color: '#fff', fontFamily: '-apple-system, BlinkMacSystemFont, San Francisco, Segoe UI' }}>Text</span>
       <ToolItem
         onClick={handleSelectParent}
-        title={t('Select parent block')}
+        title='Select parent block'
         icon={<IconFont iconName='icon-back-parent' />}
       />
       <ToolItem
         onClick={handleCopy}
-        title={t('Copy')}
+        title='Copy'
         icon={<IconFont iconName='icon-copy' />}
       />
       {
         onAddCollection && (
           <ToolItem
             onClick={handleAddToCollection}
-            title={t('Add to collection')}
+            title='Add to collection'
             icon={<IconFont iconName='icon-collection' />}
           />
         )
       }
       <ToolItem
         onClick={handleDelete}
-        title={t('Delete')}
+        title='Delete'
         icon={<IconFont iconName='icon-delete' />}
       />
       {modal}

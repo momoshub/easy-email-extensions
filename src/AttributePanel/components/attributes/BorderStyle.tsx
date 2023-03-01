@@ -5,51 +5,35 @@ import { SelectField } from '../../../components/Form';
 export const borderStyleOptions = [
   {
     value: 'dashed',
-    get label() {
-      return t('Dashed');
-    },
+    label: 'Dashed',
   },
   {
     value: 'dotted',
-    get label() {
-      return t('Dotted');
-    },
+    label: 'Dotted',
   },
   {
     value: 'solid',
-    get label() {
-      return t('Solid');
-    },
+    label: 'Solid',
   },
   {
     value: 'double',
-    get label() {
-      return t('double');
-    },
+    label: 'double',
   },
   {
     value: 'ridge',
-    get label() {
-      return t('ridge');
-    },
+    label: 'ridge',
   },
   {
     value: 'groove',
-    get label() {
-      return t('groove');
-    },
+    label: 'groove',
   },
   {
     value: 'inset',
-    get label() {
-      return t('inset');
-    },
+    label: 'inset',
   },
   {
     value: 'outset',
-    get label() {
-      return t('outset');
-    },
+    label: 'outset',
   },
 ];
 
@@ -59,7 +43,7 @@ export function BorderStyle() {
   return useMemo(() => {
     return (
       <SelectField
-        label={t('Style')}
+        label='Style'
         name={`${focusIdx}.attributes.border-style`}
         options={borderStyleOptions}
       />

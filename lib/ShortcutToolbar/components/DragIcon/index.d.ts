@@ -1,4 +1,5 @@
-import { IBlockData, RecursivePartial } from 'easy-email-core';
+import { IBlockData } from 'easy-email-core';
+import { RecursivePartial } from 'easy-email-core';
 export interface DragIconProps<T extends IBlockData> {
     type: string;
     payload?: RecursivePartial<T>;

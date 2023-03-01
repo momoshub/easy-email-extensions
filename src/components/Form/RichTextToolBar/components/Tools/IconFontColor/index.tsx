@@ -1,3 +1,4 @@
+
 import { ColorPicker } from '@extensions/components/Form/ColorPicker';
 import { IconFont } from 'easy-email-editor';
 import React, { useMemo } from 'react';
@@ -35,7 +36,7 @@ export function IconFontColor({ selectionRange, execCommand, getPopoverMountNode
             <div style={{ borderBottom: `2px solid ${color}`, position: 'absolute', width: '130%', left: '-15%', top: 16 }} />
           </div>
         )}
-        title={t('Text color')}
+        title='Text color'
       />
     </ColorPicker>
 

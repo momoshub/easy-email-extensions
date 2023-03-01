@@ -1,6 +1,8 @@
-import { PopoverProps, Tooltip } from '@arco-design/web-react';
+import { Grid, PopoverProps, Space, Tooltip } from '@arco-design/web-react';
 import React, { useCallback, useMemo } from 'react';
-import { IconFont } from 'easy-email-editor';
+import { Form } from 'react-final-form';
+import { IconFont, Stack, TextStyle } from 'easy-email-editor';
+import { SearchField, SwitchField } from '@extensions/components/Form';
 import { ToolItem } from '../ToolItem';
 import { EMAIL_BLOCK_CLASS_NAME } from 'easy-email-core';
 
@@ -55,9 +57,9 @@ export function Unlink(props: LinkProps) {
     <Tooltip
       color='#fff'
       position='tl'
-      content={t('Unlink')}
+      content="Unlink"
     >
-      <ToolItem title={t('Unlink')} icon={<IconFont iconName='icon-unlink' />} onClick={onUnlink} />
+      <ToolItem title='Unlink' icon={<IconFont iconName='icon-unlink' />} onClick={onUnlink} />
     </Tooltip>
   );
 }

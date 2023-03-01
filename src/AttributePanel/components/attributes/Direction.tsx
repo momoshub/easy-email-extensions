@@ -5,15 +5,11 @@ import { RadioGroupField } from '../../../components/Form';
 const options = [
   {
     value: 'ltr',
-    get label() {
-      return t('ltr');
-    },
+    label: 'ltr',
   },
   {
     value: 'rtl',
-    get label() {
-      return t('rtl');
-    },
+    label: 'rtl',
   },
 ];
 
@@ -24,7 +20,7 @@ export function Direction() {
     return (
       <Stack>
         <RadioGroupField
-          label={t('Direction')}
+          label='Direction'
           name={`${focusIdx}.attributes.direction`}
           options={options}
           inline

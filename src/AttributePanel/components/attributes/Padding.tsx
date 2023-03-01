@@ -1,20 +1,18 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { InputWithUnitField } from '../../../components/Form';
-import { useFocusIdx, Stack, useBlock, TextStyle, IconFont } from 'easy-email-editor';
+import { InputWithUnitField, TextField } from '../../../components/Form';
+import { useFocusIdx, Stack, useBlock, TextStyle } from 'easy-email-editor';
 import { createBlockDataByType } from 'easy-email-core';
 import { Form, useFormState } from 'react-final-form';
-import { Button, Grid, Space, Tooltip } from '@arco-design/web-react';
+import { Grid } from '@arco-design/web-react';
 import { get } from 'lodash';
-import { pixelAdapter } from '../adapter';
 
 export interface PaddingProps {
   title?: string;
   attributeName?: 'padding' | 'inner-padding' | 'text-padding';
   name?: string;
-  showResetAll?: boolean;
 }
 export function Padding(props: PaddingProps = {}) {
-  const { title = t('Padding'), attributeName = 'padding', name, showResetAll } = props;
+  const { title = 'Padding', attributeName = 'padding', name } = props;
   const { focusBlock, change, values } = useBlock();
   const { focusIdx } = useFocusIdx();
 
@@ -22,7 +20,7 @@ export function Padding(props: PaddingProps = {}) {
 
   const defaultConfig = useMemo(
     () => (type ? createBlockDataByType(type) : undefined),
-    [type],
+    [type]
   );
 
   const paddingValue: string | undefined = useMemo(() => {
@@ -63,90 +61,39 @@ export function Padding(props: PaddingProps = {}) {
       } else {
         change(focusIdx + `.attributes[${attributeName}]`, val);
       }
+
     },
-    [name, change, focusIdx, attributeName],
+    [name, change, focusIdx, attributeName]
   );
-  const onResetPadding = useCallback(() => {
-    if (name) {
-      change(name, '0px 0px 0px 0px');
-    } else {
-      change(focusIdx + `.attributes[${attributeName}]`, '0px 0px 0px 0px');
-    }
-  }, [name, change, focusIdx, attributeName]);
 
   return (
-    <Form<{ top: string; right: string; left: string; bottom: string }>
+    <Form<{ top: string; right: string; left: string; bottom: string; }>
       initialValues={paddingFormValues}
       subscription={{ submitting: true, pristine: true }}
       enableReinitialize
-      onSubmit={() => {}}
+      onSubmit={() => { }}
     >
       {() => {
         return (
           <>
-            <Stack
-              vertical
-              spacing='extraTight'
-            >
-              <Space align='center'>
-                <TextStyle variation='strong'>{title}</TextStyle>
-                {showResetAll && (
-                  <Tooltip content='Remove all padding'>
-                    <Button
-                      onClick={onResetPadding}
-                      size='mini'
-                      icon={(
-                        <IconFont
-                          iconName='icon-remove'
-                          size={12}
-                        />
-                      )}
-                    />
-                  </Tooltip>
-                )}
-              </Space>
+            <Stack vertical spacing='extraTight'>
+              <TextStyle variation='strong'>{title}</TextStyle>
 
               <Grid.Row>
                 <Grid.Col span={11}>
-                  <InputWithUnitField
-                    label={t('Top (px)')}
-                    name='top'
-                    autoComplete='off'
-                    config={pixelAdapter}
-                  />
+                  <InputWithUnitField label='Top' name='top' />
                 </Grid.Col>
-                <Grid.Col
-                  offset={1}
-                  span={11}
-                >
-                  <InputWithUnitField
-                    label={t('Left (px)')}
-                    name='left'
-                    autoComplete='off'
-                    config={pixelAdapter}
-                  />
+                <Grid.Col offset={1} span={11}>
+                  <InputWithUnitField label='Left' name='left' />
                 </Grid.Col>
               </Grid.Row>
 
               <Grid.Row>
                 <Grid.Col span={11}>
-                  <InputWithUnitField
-                    label={t('Bottom (px)')}
-                    name='bottom'
-                    config={pixelAdapter}
-                    autoComplete='off'
-                  />
+                  <InputWithUnitField label='Bottom' name='bottom' />
                 </Grid.Col>
-                <Grid.Col
-                  offset={1}
-                  span={11}
-                >
-                  <InputWithUnitField
-                    label={t('Right (px)')}
-                    name='right'
-                    autoComplete='off'
-                    config={pixelAdapter}
-                  />
+                <Grid.Col offset={1} span={11}>
+                  <InputWithUnitField label='Right' name='right' />
                 </Grid.Col>
               </Grid.Row>
             </Stack>
@@ -158,7 +105,9 @@ export function Padding(props: PaddingProps = {}) {
   );
 }
 
-const PaddingChangeWrapper: React.FC<{ onChange: (val: string) => void }> = props => {
+const PaddingChangeWrapper: React.FC<{ onChange: (val: string) => void; }> = (
+  props
+) => {
   const {
     values: { top, right, bottom, left },
   } = useFormState();

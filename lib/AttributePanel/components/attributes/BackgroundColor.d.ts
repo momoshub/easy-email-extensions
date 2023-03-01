@@ -1,3 +1,3 @@
-export declare function BackgroundColor({ title }: {
+export declare function BackgroundColor({ title, }: {
     title?: string;
 }): JSX.Element;

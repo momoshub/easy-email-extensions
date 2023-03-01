@@ -142,20 +142,6 @@ export default function App() {
     });
     ```
 
-  - Hide Page block subject & subTitle
-
-    ```tsx
-    const DefaultPageConfigPanel = BlockAttributeConfigurationManager.get(BasicType.PAGE);
-    BlockAttributeConfigurationManager.add({
-      [BasicType.PAGE]: () => (
-        <DefaultPageConfigPanel
-          hideSubject
-          hideSubTitle
-        />
-      ),
-    });
-    ```
-
 - `InteractivePrompt`
 
   - block hover and focus style
@@ -176,7 +162,10 @@ export default function App() {
 
     ```tsx
     import { BasicType } from 'easy-email-core';
-    import { BlockMarketManager, BlockMaskWrapper } from 'easy-email-extensions';
+    import {
+      BlockMarketManager,
+      BlockMaskWrapper,
+    } from 'easy-email-extensions';
 
     BlockMarketManager.addCategories([
       {
@@ -205,7 +194,9 @@ export default function App() {
                     },
                   }}
                 >
-                  <div style={{ fontSize: 20, width: '100%', paddingLeft: 20 }}>20px</div>
+                  <div style={{ fontSize: 20, width: '100%', paddingLeft: 20 }}>
+                    20px
+                  </div>
                 </BlockMaskWrapper>
               );
             },

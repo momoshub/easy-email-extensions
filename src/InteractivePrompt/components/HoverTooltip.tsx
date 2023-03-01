@@ -2,8 +2,14 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { getNodeTypeFromClassName, BlockManager } from 'easy-email-core';
 import { createPortal } from 'react-dom';
-import { getEditorRoot, useEditorContext, useFocusIdx, useHoverIdx, useLazyState } from 'easy-email-editor';
+import {
+  getEditorRoot,
+  useEditorContext,
+  useFocusIdx,
+  useHoverIdx,
+} from 'easy-email-editor';
 import { awaitForElement } from '@extensions/utils/awaitForElement';
+import { useLazyState } from 'easy-email-editor';
 
 export function HoverTooltip() {
   const { hoverIdx, direction, isDragging } = useHoverIdx();
@@ -27,7 +33,7 @@ export function HoverTooltip() {
 
     if (lazyHoverIdx) {
       const promiseObj = awaitForElement<HTMLDivElement>(lazyHoverIdx);
-      promiseObj.promise.then(blockNode => {
+      promiseObj.promise.then((blockNode) => {
         if (rootBounds) {
           const { top } = blockNode.getBoundingClientRect();
           setIsTop(rootBounds.top === top);
@@ -40,13 +46,16 @@ export function HoverTooltip() {
         promiseObj.cancel();
       };
     } else {
+
       setBlockNode(null);
     }
   }, [lazyHoverIdx, initialized]);
 
   const block = useMemo(() => {
     return blockNode
-      ? BlockManager.getBlockByType(getNodeTypeFromClassName(blockNode.classList)!)
+      ? BlockManager.getBlockByType(
+        getNodeTypeFromClassName(blockNode.classList)!
+      )
       : null;
   }, [blockNode]);
 
@@ -76,7 +85,7 @@ export function HoverTooltip() {
             isDragging={isDragging}
           />
         </div>,
-        blockNode,
+        blockNode
       )}
     </>
   );
@@ -94,13 +103,13 @@ function TipNode(props: TipNodeProps) {
   const { direction, title, lineWidth, type } = props;
   const dragTitle = useMemo(() => {
     if (direction === 'top' || direction === 'noEnoughTop') {
-      return `${t('Insert before')} ${title}`;
+      return `Insert before ${title}`;
     } else if (direction === 'bottom') {
-      return `${t('Insert after')} ${title}`;
+      return `Insert after ${title}`;
     } else if (direction === 'right' || direction === 'left') {
-      return t('Drag here');
-    }    
-    return `${t('Drag to')} ${title}`;
+      return 'Drag here';
+    }
+    return `Drag to ${title}`;
   }, [direction, title]);
 
   const color = useMemo(() => {

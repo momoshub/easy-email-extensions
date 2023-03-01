@@ -21,15 +21,19 @@ import {
   IBlockData,
 } from 'easy-email-core';
 import styles from './index.module.scss';
-import { cloneDeep, get, isString, isEqual } from 'lodash';
+import { cloneDeep, get, isString } from 'lodash';
 import { EyeIcon } from './components/EyeIcon';
 import { BlockTree, BlockTreeProps } from './components/BlockTree';
 import { ContextMenu } from './components/ContextMenu';
 import { classnames } from '@extensions/utils/classnames';
-import { getDirectionFormDropPosition, useAvatarWrapperDrop } from './hooks/useAvatarWrapperDrop';
+import {
+  getDirectionFormDropPosition,
+  useAvatarWrapperDrop,
+} from './hooks/useAvatarWrapperDrop';
 import { getIconNameByBlockType } from '@extensions/utils/getIconNameByBlockType';
 import { Space } from '@arco-design/web-react';
 import { getBlockTitle } from '@extensions/utils/getBlockTitle';
+import { isEqual } from 'lodash';
 
 export interface IBlockDataWithId extends IBlockData {
   id: string;
@@ -47,7 +51,8 @@ export function BlockLayer(props: BlockLayerProps) {
   const { renderTitle: propsRenderTitle } = props;
   const { focusIdx, setFocusIdx } = useFocusIdx();
   const { setHoverIdx, setIsDragging, setDirection } = useHoverIdx();
-  const { moveBlock, setValueByIdx, copyBlock, removeBlock, values } = useBlock();
+  const { moveBlock, setValueByIdx, copyBlock, removeBlock, values } =
+    useBlock();
 
   const { setBlockLayerRef, allowDrop, removeHightLightClassName } =
     useAvatarWrapperDrop();
@@ -70,26 +75,25 @@ export function BlockLayer(props: BlockLayerProps) {
         setValueByIdx(id, blockData);
       }
     },
-    [setValueByIdx, valueRef],
+    [setValueByIdx, valueRef]
   );
 
   const renderTitle = useCallback(
     (data: IBlockDataWithId) => {
       const isPage = data.type === BasicType.PAGE;
-      const title = propsRenderTitle ? propsRenderTitle(data) : getBlockTitle(data);
+      const title = propsRenderTitle
+        ? propsRenderTitle(data)
+        : getBlockTitle(data);
       return (
         <div
           data-tree-idx={data.id}
           className={classnames(
             styles.title,
             !isPage && getNodeIdxClassName(data.id),
-            !isPage && 'email-block',
+            !isPage && 'email-block'
           )}
         >
-          <Space
-            align='center'
-            size='mini'
-          >
+          <Space align='center' size='mini'>
             <IconFont
               iconName={getIconNameByBlockType(data.type)}
               style={{ fontSize: 12, color: '#999' }}
@@ -107,15 +111,12 @@ export function BlockLayer(props: BlockLayerProps) {
             </div>
           </Space>
           <div className={styles.eyeIcon}>
-            <EyeIcon
-              blockData={data}
-              onToggleVisible={onToggleVisible}
-            />
+            <EyeIcon blockData={data} onToggleVisible={onToggleVisible} />
           </div>
         </div>
       );
     },
-    [onToggleVisible, propsRenderTitle],
+    [onToggleVisible, propsRenderTitle]
   );
 
   const treeData = useMemo(() => {
@@ -123,11 +124,13 @@ export function BlockLayer(props: BlockLayerProps) {
     const loop = (
       item: IBlockDataWithId,
       id: string,
-      parent: IBlockDataWithId | null,
+      parent: IBlockDataWithId | null
     ) => {
       item.id = id;
       item.parent = parent;
-      item.children.map((child, index) => loop(child, getChildIdx(id, index), item));
+      item.children.map((child, index) =>
+        loop(child, getChildIdx(id, index), item)
+      );
     };
 
     loop(copyData, getPageIdx(), null);
@@ -142,7 +145,7 @@ export function BlockLayer(props: BlockLayerProps) {
         scrollBlockEleIntoView({ idx: selectedId });
       }, 50);
     },
-    [setFocusIdx],
+    [setFocusIdx]
   );
 
   const onContextMenu = useCallback(
@@ -150,7 +153,7 @@ export function BlockLayer(props: BlockLayerProps) {
       ev.preventDefault();
       setContextMenuData({ blockData, left: ev.clientX, top: ev.clientY });
     },
-    [],
+    []
   );
 
   const onCloseContextMenu = useCallback((ev?: React.MouseEvent) => {
@@ -161,7 +164,7 @@ export function BlockLayer(props: BlockLayerProps) {
     (id: string) => {
       setHoverIdx(id);
     },
-    [setHoverIdx],
+    [setHoverIdx]
   );
 
   const onMouseLeave = useCallback(() => {
@@ -177,7 +180,7 @@ export function BlockLayer(props: BlockLayerProps) {
   }, [setIsDragging]);
 
   const onDrop: BlockTreeProps<IBlockDataWithId>['onDrop'] = useCallback(
-    params => {
+    (params) => {
       const { dragNode, dropNode, dropPosition } = params;
       const dragBlock = BlockManager.getBlockByType(dragNode.dataRef.type);
       if (!dragBlock) return false;
@@ -199,38 +202,43 @@ export function BlockLayer(props: BlockLayerProps) {
       } else {
         moveBlock(
           dragNode.key,
-          getChildIdx(dropNode.parentKey, dropPosition > 0 ? dropIndex + 1 : dropIndex),
+          getChildIdx(
+            dropNode.parentKey,
+            dropPosition > 0 ? dropIndex + 1 : dropIndex
+          )
         );
       }
     },
-    [moveBlock],
+    [moveBlock]
   );
 
-  const blockTreeAllowDrop: BlockTreeProps<IBlockDataWithId>['allowDrop'] = useCallback(
-    (() => {
-      let lastDropResult: ReturnType<typeof allowDrop> = false;
-      return (data: Parameters<typeof allowDrop>[0]) => {
-        const dropResult = allowDrop(data);
-        if (isEqual(lastDropResult, dropResult)) {
-          return dropResult;
-        }
-        lastDropResult = dropResult;
-        if (dropResult) {
-          const node = document.querySelector(`[data-tree-idx="${dropResult.key}"]`)
-            ?.parentNode?.parentNode;
-          if (node instanceof HTMLElement) {
-            removeHightLightClassName();
-            node.classList.add('arco-tree-node-title-gap-bottom');
+  const blockTreeAllowDrop: BlockTreeProps<IBlockDataWithId>['allowDrop'] =
+    useCallback(
+      (() => {
+        let lastDropResult: ReturnType<typeof allowDrop> = false;
+        return (data: Parameters<typeof allowDrop>[0]) => {
+          const dropResult = allowDrop(data);
+          if (isEqual(lastDropResult, dropResult)) {
+            return dropResult;
           }
-          setDirection(getDirectionFormDropPosition(dropResult.position));
-          setHoverIdx(dropResult.key);
-        }
+          lastDropResult = dropResult;
+          if (dropResult) {
+            const node = document.querySelector(
+              `[data-tree-idx="${dropResult.key}"]`
+            )?.parentNode?.parentNode;
+            if (node instanceof HTMLElement) {
+              removeHightLightClassName();
+              node.classList.add('arco-tree-node-title-gap-bottom');
+            }
+            setDirection(getDirectionFormDropPosition(dropResult.position));
+            setHoverIdx(dropResult.key);
+          }
 
-        return dropResult;
-      };
-    })(),
-    [allowDrop, removeHightLightClassName, setDirection, setHoverIdx],
-  );
+          return dropResult;
+        };
+      })(),
+      [allowDrop, removeHightLightClassName, setDirection, setHoverIdx]
+    );
 
   const selectedKeys = useMemo(() => {
     if (!focusIdx) return [];
@@ -249,6 +257,9 @@ export function BlockLayer(props: BlockLayerProps) {
     return keys;
   }, [focusIdx]);
 
+  const hasFocus = Boolean(focusIdx);
+
+  if (!hasFocus) return null;
   return (
     <div
       ref={setBlockLayerRef}

@@ -1,3 +1,1 @@
-export declare function EditPanel({ showSourceCode }: {
-    showSourceCode: boolean;
-}): JSX.Element;
+export declare function EditPanel(): JSX.Element;

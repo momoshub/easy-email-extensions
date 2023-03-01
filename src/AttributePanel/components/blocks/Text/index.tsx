@@ -13,7 +13,8 @@ import { LineHeight } from '@extensions/AttributePanel/components/attributes/Lin
 import { LetterSpacing } from '@extensions/AttributePanel/components/attributes/LetterSpacing';
 
 import { AttributesPanelWrapper } from '@extensions/AttributePanel/components/attributes/AttributesPanelWrapper';
-import { Collapse, Grid, Space, Tooltip, Button } from '@arco-design/web-react';
+import { Collapse, Grid, Space, Switch, Tooltip } from '@arco-design/web-react';
+import { Button } from '@arco-design/web-react';
 import { IconFont } from 'easy-email-editor';
 import { HtmlEditor } from '../../UI/HtmlEditor';
 import { ClassName } from '../../attributes/ClassName';
@@ -25,7 +26,7 @@ export function Text() {
   return (
     <AttributesPanelWrapper
       extra={(
-        <Tooltip content={t('Html mode')}>
+        <Tooltip content='Html mode'>
           <Button
             onClick={() => setVisible(true)}
             icon={<IconFont iconName='icon-html' />}
@@ -34,44 +35,29 @@ export function Text() {
       )}
     >
       <CollapseWrapper defaultActiveKey={['0', '1', '2']}>
-        <Collapse.Item
-          name='0'
-          header={t('Dimension')}
-        >
+        <Collapse.Item name='0' header='Dimension'>
           <Space direction='vertical'>
             <Height />
-            <Padding showResetAll />
+            <Padding />
           </Space>
         </Collapse.Item>
-        <Collapse.Item
-          name='1'
-          header={t('Color')}
-        >
+        <Collapse.Item name='1' header='Color'>
           <Grid.Row>
             <Grid.Col span={11}>
               <Color />
             </Grid.Col>
-            <Grid.Col
-              offset={1}
-              span={11}
-            >
-              <ContainerBackgroundColor title={t('Background color')} />
+            <Grid.Col offset={1} span={11}>
+              <ContainerBackgroundColor title='Background color' />
             </Grid.Col>
           </Grid.Row>
         </Collapse.Item>
-        <Collapse.Item
-          name='2'
-          header={t('Typography')}
-        >
+        <Collapse.Item name='2' header='Typography'>
           <Space direction='vertical'>
             <Grid.Row>
               <Grid.Col span={11}>
                 <FontFamily />
               </Grid.Col>
-              <Grid.Col
-                offset={1}
-                span={11}
-              >
+              <Grid.Col offset={1} span={11}>
                 <FontSize />
               </Grid.Col>
             </Grid.Row>
@@ -80,10 +66,7 @@ export function Text() {
               <Grid.Col span={11}>
                 <LineHeight />
               </Grid.Col>
-              <Grid.Col
-                offset={1}
-                span={11}
-              >
+              <Grid.Col offset={1} span={11}>
                 <LetterSpacing />
               </Grid.Col>
             </Grid.Row>
@@ -92,10 +75,7 @@ export function Text() {
               <Grid.Col span={11}>
                 <TextDecoration />
               </Grid.Col>
-              <Grid.Col
-                offset={1}
-                span={11}
-              >
+              <Grid.Col offset={1} span={11}>
                 <FontWeight />
               </Grid.Col>
             </Grid.Row>
@@ -106,26 +86,17 @@ export function Text() {
 
             <Grid.Row>
               <Grid.Col span={11} />
-              <Grid.Col
-                offset={1}
-                span={11}
-              />
+              <Grid.Col offset={1} span={11} />
             </Grid.Row>
           </Space>
         </Collapse.Item>
-        <Collapse.Item
-          name='4'
-          header={t('Extra')}
-        >
+        <Collapse.Item name='4' header='Extra'>
           <Grid.Col span={24}>
             <ClassName />
           </Grid.Col>
         </Collapse.Item>
       </CollapseWrapper>
-      <HtmlEditor
-        visible={visible}
-        setVisible={setVisible}
-      />
+      <HtmlEditor visible={visible} setVisible={setVisible} />
     </AttributesPanelWrapper>
   );
 }

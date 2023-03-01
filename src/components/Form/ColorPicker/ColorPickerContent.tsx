@@ -75,7 +75,7 @@ export function ColorPickerContent(props: ColorPickerContentProps) {
             position: 'relative',
           }}
         >
-          <span>{t('Picker...')}</span>
+          <span>Picker...</span>
           <input
             style={{
               position: 'absolute',

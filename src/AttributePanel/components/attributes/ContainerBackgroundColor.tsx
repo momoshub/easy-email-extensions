@@ -3,7 +3,7 @@ import { ColorPickerField } from '../../../components/Form';
 import { useFocusIdx } from 'easy-email-editor';
 
 export function ContainerBackgroundColor({
-  title = t('Container background color'),
+  title = 'Container background color',
 }: {
   title?: string;
 }) {
@@ -14,6 +14,7 @@ export function ContainerBackgroundColor({
       <ColorPickerField
         label={title}
         name={`${focusIdx}.attributes.container-background-color`}
+        alignment='center'
       />
     );
   }, [focusIdx, title]);

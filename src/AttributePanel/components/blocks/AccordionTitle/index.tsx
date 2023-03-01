@@ -16,10 +16,10 @@ export function AccordionTitle() {
   return (
     <AttributesPanelWrapper>
       <Collapse defaultActiveKey={['0', '1', '2']}>
-        <Collapse.Item name='0' header={t('Setting')}>
+        <Collapse.Item name='0' header='Setting'>
           <Space direction='vertical'>
             <TextAreaField
-              label={t('Content')}
+              label='Content'
               name={`${focusIdx}.data.value.content`}
             />
 
@@ -48,7 +48,7 @@ export function AccordionTitle() {
               <Grid.Col offset={1} span={11} />
             </Grid.Row>
 
-            <Padding title={t('Padding')} attributeName='padding' />
+            <Padding title='Padding' attributeName='padding' />
           </Space>
         </Collapse.Item>
       </Collapse>

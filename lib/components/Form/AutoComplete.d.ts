@@ -7,6 +7,5 @@ export interface AutoCompleteProps extends Omit<ArcoAutoCompleteProps, 'onChange
         label: any;
     }>;
     onChange: (val: string) => void;
-    showSearch?: boolean;
 }
 export declare function AutoComplete(props: AutoCompleteProps): JSX.Element;

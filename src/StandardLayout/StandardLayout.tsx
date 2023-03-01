@@ -1,4 +1,4 @@
-import { Card, ConfigProvider, Layout } from '@arco-design/web-react';
+import { Card, ConfigProvider, Layout, Message, Tabs } from '@arco-design/web-react';
 import { useEditorProps, useFocusIdx } from 'easy-email-editor';
 import React, { useEffect } from 'react';
 import { InteractivePrompt } from '../InteractivePrompt';
@@ -7,14 +7,15 @@ import enUS from '@arco-design/web-react/es/locale/en-US';
 import { MergeTagBadgePrompt } from '@extensions/MergeTagBadgePrompt';
 import { EditPanel } from '../EditPanel';
 import { ConfigurationPanel } from '@extensions/ConfigurationPanel';
-import { ExtensionProps, ExtensionProvider } from '@extensions/components/Providers/ExtensionProvider';
+import {
+  ExtensionProps,
+  ExtensionProvider,
+} from '@extensions/components/Providers/ExtensionProvider';
 import { AdvancedType } from 'easy-email-core';
 
 const defaultCategories: ExtensionProps['categories'] = [
   {
-    get label() {
-      return t('Content');
-    },
+    label: 'Content',
     active: true,
     blocks: [
       {
@@ -45,16 +46,12 @@ const defaultCategories: ExtensionProps['categories'] = [
     ],
   },
   {
-    get label() {
-      return t('Layout');
-    },
+    label: 'Layout',
     active: true,
     displayType: 'column',
     blocks: [
       {
-        get title() {
-          return t('2 columns');
-        },
+        title: '2 columns',
         payload: [
           ['50%', '50%'],
           ['33%', '67%'],
@@ -64,9 +61,7 @@ const defaultCategories: ExtensionProps['categories'] = [
         ],
       },
       {
-        get title() {
-          return t('3 columns');
-        },
+        title: '3 columns',
         payload: [
           ['33.33%', '33.33%', '33.33%'],
           ['25%', '25%', '50%'],
@@ -74,9 +69,7 @@ const defaultCategories: ExtensionProps['categories'] = [
         ],
       },
       {
-        get title() {
-          return t('4 columns');
-        },
+        title: '4 columns',
         payload: [[['25%', '25%', '25%', '25%']]],
       },
     ],
@@ -117,9 +110,9 @@ export const StandardLayout: React.FC<ExtensionProps> = props => {
               overflow: 'hidden',
             }}
           >
-            {compact && <EditPanel showSourceCode={showSourceCode} />}
+            {compact && <EditPanel />}
             <Layout style={{ height: containerHeight, flex: 1 }}>{props.children}</Layout>
-            {!compact && <EditPanel showSourceCode={showSourceCode} />}
+            {!compact && <EditPanel />}
             {compact ? (
               <Layout.Sider
                 style={{

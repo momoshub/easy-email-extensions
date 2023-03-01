@@ -10,7 +10,7 @@ import { useExtensionProps } from '@extensions/components/Providers/ExtensionPro
 
 const TabPane = Tabs.TabPane;
 
-export function EditPanel({ showSourceCode }: { showSourceCode: boolean }) {
+export function EditPanel() {
   const { height } = useEditorProps();
   const { compact = true } = useExtensionProps();
 
@@ -36,7 +36,7 @@ export function EditPanel({ showSourceCode }: { showSourceCode: boolean }) {
       >
         <TabPane
           key='2'
-          title={t('Block')}
+          title='Block'
         >
           <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
             <Blocks />
@@ -57,7 +57,6 @@ export function EditPanel({ showSourceCode }: { showSourceCode: boolean }) {
       {!compact && (
         <ConfigurationDrawer
           height={height}
-          showSourceCode={showSourceCode}
           compact={Boolean(compact)}
         />
       )}

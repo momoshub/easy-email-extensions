@@ -6,11 +6,9 @@ import React, { useCallback, useMemo, useRef } from 'react';
 export function ConfigurationDrawer({
   height,
   compact,
-  showSourceCode,
 }: {
   height: string;
   compact: boolean;
-  showSourceCode: boolean;
 }) {
   const refWrapper = useRef(null);
   const { focusIdx, setFocusIdx } = useFocusIdx();
@@ -31,7 +29,7 @@ export function ConfigurationDrawer({
             left: 0,
             width: '100%',
             height: '100%',
-            zIndex: visible ? 1 : -1,
+            zIndex: 1,
             pointerEvents: visible ? 'auto' : 'none',
           }}
         />
@@ -43,14 +41,14 @@ export function ConfigurationDrawer({
             focusLock={false}
             placement='right'
             bodyStyle={{ padding: 0 }}
-            visible
+            visible={visible}
             getPopupContainer={() => refWrapper && (refWrapper.current as any)}
             footer={null}
             onCancel={onClose}
           >
             <ConfigurationPanel
               compact={compact}
-              showSourceCode={showSourceCode}
+              showSourceCode
               height={height}
               onBack={onClose}
             />
@@ -58,5 +56,5 @@ export function ConfigurationDrawer({
         )}
       </>
     );
-  }, [visible, onClose, compact, showSourceCode, height]);
+  }, [visible, onClose, compact, height]);
 }

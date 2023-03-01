@@ -1,7 +1,13 @@
 import { Button, Drawer } from '@arco-design/web-react';
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { BasicType, IText } from 'easy-email-core';
-import { Stack, TextStyle, useBlock, useEditorContext, useFocusIdx } from 'easy-email-editor';
+import {
+  Stack,
+  TextStyle,
+  useBlock,
+  useEditorContext,
+  useFocusIdx,
+} from 'easy-email-editor';
 import { ShadowDom } from '@extensions/components/ShadowDom';
 
 const CodeMirrorEditorPromise = import(
@@ -60,11 +66,11 @@ export const HtmlEditor: React.FC<{
       title={(
         <Stack distribution='equalSpacing'>
           <TextStyle variation='strong' size='large'>
-            {t('Html')}
+            Html
           </TextStyle>
           <Stack>
             <Button type='primary' onClick={onSave}>
-              {t('Save')}
+              Save
             </Button>
           </Stack>
         </Stack>
@@ -92,7 +98,7 @@ export const HtmlEditor: React.FC<{
                   color: '#fff',
                 }}
               >
-                {t('Editor Loading...')}
+                Editor Loading...
               </div>
             )}
           >

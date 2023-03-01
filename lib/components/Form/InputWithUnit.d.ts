@@ -6,6 +6,5 @@ export interface InputWithUnitProps extends Omit<ArcoInputProps, 'onChange'> {
         value: string;
         label: string;
     }> | 'default' | 'percent';
-    quickchange?: boolean;
 }
 export declare function InputWithUnit(props: InputWithUnitProps): JSX.Element;

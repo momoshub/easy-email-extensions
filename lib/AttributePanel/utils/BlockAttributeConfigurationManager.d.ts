@@ -1,6 +1,5 @@
-import { ReactNode } from 'react';
 declare type ObjectComponent = {
-    [key: string]: (...args: any) => ReactNode;
+    [key: string]: () => JSX.Element | null;
 };
 export declare class BlockAttributeConfigurationManager {
     private static map;

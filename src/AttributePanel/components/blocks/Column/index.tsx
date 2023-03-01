@@ -9,25 +9,18 @@ import { Background } from '@extensions/AttributePanel/components/attributes/Bac
 import { Border } from '@extensions/AttributePanel/components/attributes/Border';
 import { ClassName } from '../../attributes/ClassName';
 import { CollapseWrapper } from '../../attributes/CollapseWrapper';
-import { BackgroundColor } from '../../attributes';
 
 export function Column() {
   return (
     <AttributesPanelWrapper>
       <CollapseWrapper defaultActiveKey={['0', '1', '2']}>
-        <Collapse.Item
-          name='0'
-          header={t('Dimension')}
-        >
+        <Collapse.Item name='0' header='Dimension'>
           <Space direction='vertical'>
             <Grid.Row>
               <Grid.Col span={11}>
                 <Width />
               </Grid.Col>
-              <Grid.Col
-                offset={1}
-                span={11}
-              >
+              <Grid.Col offset={1} span={11}>
                 <VerticalAlign />
               </Grid.Col>
             </Grid.Row>
@@ -35,22 +28,13 @@ export function Column() {
             <Padding />
           </Space>
         </Collapse.Item>
-        <Collapse.Item
-          name='1'
-          header={t('Background')}
-        >
-          <BackgroundColor />
+        <Collapse.Item name='1' header='Background'>
+          <Background />
         </Collapse.Item>
-        <Collapse.Item
-          name='2'
-          header={t('Border')}
-        >
+        <Collapse.Item name='2' header='Border'>
           <Border />
         </Collapse.Item>
-        <Collapse.Item
-          name='4'
-          header={t('Extra')}
-        >
+        <Collapse.Item name='4' header='Extra'>
           <Grid.Col span={24}>
             <ClassName />
           </Grid.Col>

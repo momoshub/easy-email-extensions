@@ -86,38 +86,38 @@ export function Link(props: LinkProps) {
                   <SearchField
                     size='small'
                     name='link'
-                    label={t('Link')}
+                    label='Link'
                     labelHidden
-                    searchButton={t('Apply')}
-                    placeholder={t('https://www.example.com')}
+                    searchButton='Apply'
+                    placeholder='https://www.example.com'
                     onSearch={() => handleSubmit()}
                   />
                 </Stack>
                 <Grid.Row>
                   <Grid.Col span={12}>
                     <Space align='center' size='mini'>
-                      <TextStyle size='smallest'>{t('Target')}</TextStyle>
+                      <TextStyle size='smallest'>Target</TextStyle>
                       <SwitchField
                         size='small'
-                        label={t('Target')}
+                        label='Target'
                         labelHidden
                         name='blank'
-                        checkedText={t('blank')}
-                        uncheckedText={t('self')}
+                        checkedText='blank'
+                        uncheckedText='self'
                         inline
                       />
                     </Space>
                   </Grid.Col>
                   <Grid.Col span={12}>
                     <Space align='center' size='mini'>
-                      <TextStyle size='smallest'>{t('Underline')}</TextStyle>
+                      <TextStyle size='smallest'>Underline</TextStyle>
                       <SwitchField
                         size='small'
-                        label={t('Underline')}
+                        label='Underline'
                         labelHidden
                         name='underline'
-                        checkedText={t('off')}
-                        uncheckedText={t('on')}
+                        checkedText='off'
+                        uncheckedText='on'
                         inline
                       />
                     </Space>
@@ -126,7 +126,7 @@ export function Link(props: LinkProps) {
               </div>
             )}
           >
-            <ToolItem isActive={Boolean(initialValues.link)} title={t('Link')} icon={<IconFont iconName='icon-link' />} />
+            <ToolItem isActive={Boolean(initialValues.link)} title='Link' icon={<IconFont iconName='icon-link' />} />
           </Tooltip>
         );
       }}

@@ -10,4 +10,4 @@ export interface IBlockDataWithId extends IBlockData {
 export interface BlockLayerProps {
     renderTitle?: (block: IBlockDataWithId) => React.ReactNode;
 }
-export declare function BlockLayer(props: BlockLayerProps): JSX.Element;
+export declare function BlockLayer(props: BlockLayerProps): JSX.Element | null;

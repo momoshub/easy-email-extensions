@@ -1,5 +1,4 @@
-export declare function ConfigurationDrawer({ height, compact, showSourceCode, }: {
+export declare function ConfigurationDrawer({ height, compact, }: {
     height: string;
     compact: boolean;
-    showSourceCode: boolean;
 }): JSX.Element;

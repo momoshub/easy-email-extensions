@@ -13,31 +13,31 @@ export function Wrapper() {
   return (
     <AttributesPanelWrapper style={{ padding: 0 }}>
       <CollapseWrapper defaultActiveKey={['0', '1', '2']}>
-        <Collapse.Item name='0' header={t('Dimension')}>
+        <Collapse.Item name='0' header='Dimension'>
           <Stack vertical spacing='tight'>
             <Padding />
           </Stack>
         </Collapse.Item>
-        <Collapse.Item name='1' header={t('Background')}>
+        <Collapse.Item name='1' header='Background'>
           <Stack vertical spacing='tight'>
             <Background />
           </Stack>
         </Collapse.Item>
-        <Collapse.Item name='2' header={t('Border')}>
+        <Collapse.Item name='2' header='Border'>
           <Stack vertical spacing='tight'>
             <TextField
-              label={t('Border')}
+              label='Border'
               name={`${focusIdx}.attributes.border`}
               inline
             />
             <TextField
-              label={t('Background border radius')}
+              label='Background border radius'
               name={`${focusIdx}.attributes.border-radius`}
               inline
             />
           </Stack>
         </Collapse.Item>
-        <Collapse.Item name='4' header={t('Extra')}>
+        <Collapse.Item name='4' header='Extra'>
           <Grid.Col span={24}>
             <ClassName />
           </Grid.Col>

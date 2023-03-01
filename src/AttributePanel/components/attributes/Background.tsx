@@ -1,33 +1,30 @@
-import React, { useMemo } from 'react';
-import { ImageUploaderField, SelectField, TextField } from '../../../components/Form';
-import { useFocusIdx, useEditorProps } from 'easy-email-editor';
+import React, { useContext, useMemo } from 'react';
+import {
+  ImageUploaderField,
+  InputWithUnitField,
+  SelectField,
+  TextField,
+} from '../../../components/Form';
+import { Stack, useFocusIdx, useEditorProps } from 'easy-email-editor';
 import { BackgroundColor } from './BackgroundColor';
 import { Grid, Space } from '@arco-design/web-react';
 
 const backgroundRepeatOptions = [
   {
     value: 'no-repeat',
-    get label() {
-      return t('No repeat');
-    },
+    label: 'No repeat',
   },
   {
     value: 'repeat',
-    get label() {
-      return t('Repeat');
-    },
+    label: 'Repeat',
   },
   {
     value: 'repeat-x',
-    get label() {
-      return t('Repeat X');
-    },
+    label: 'Repeat X',
   },
   {
     value: 'repeat-y',
-    get label() {
-      return t('Repeat Y');
-    },
+    label: 'Repeat Y',
   },
 ];
 
@@ -36,16 +33,11 @@ export function Background() {
   const { onUploadImage } = useEditorProps();
   return useMemo(() => {
     return (
-      <Space
-        key={focusIdx}
-        direction='vertical'
-      >
+      <Space key={focusIdx} direction='vertical'>
         <ImageUploaderField
-          label={t('Background image')}
+          label='Background image'
           name={`${focusIdx}.attributes.background-url`}
-          helpText={t(
-            'The image suffix should be .jpg, jpeg, png, gif, etc. Otherwise, the picture may not be displayed normally.',
-          )}
+          helpText='The image suffix should be .jpg, jpeg, png, gif, etc. Otherwise, the picture may not be displayed normally.'
           uploadHandler={onUploadImage}
         />
 
@@ -53,19 +45,16 @@ export function Background() {
           <Grid.Col span={11}>
             <BackgroundColor />
           </Grid.Col>
-          <Grid.Col
-            offset={1}
-            span={11}
-          >
+          <Grid.Col offset={1} span={11}>
             <SelectField
-              label={t('Background repeat')}
+              label='Background repeat'
               name={`${focusIdx}.attributes.background-repeat`}
               options={backgroundRepeatOptions}
             />
           </Grid.Col>
         </Grid.Row>
         <TextField
-          label={t('Background size')}
+          label='Background size'
           name={`${focusIdx}.attributes.background-size`}
         />
       </Space>

@@ -8,7 +8,12 @@ import {
   JsonToMjml,
   MjmlToJson,
 } from 'easy-email-core';
-import { useBlock, useFocusIdx, useEditorContext, useEditorProps } from 'easy-email-editor';
+import {
+  useBlock,
+  useFocusIdx,
+  useEditorContext,
+  useEditorProps,
+} from 'easy-email-editor';
 import { cloneDeep } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -34,7 +39,7 @@ export function SourceCodePanel() {
 
         const block = BlockManager.getBlockByType(parseValue.type);
         if (!block) {
-          throw new Error(t('Invalid content'));
+          throw new Error('Invalid content');
         }
         if (
           !parseValue.data ||
@@ -42,7 +47,7 @@ export function SourceCodePanel() {
           !parseValue.attributes ||
           !Array.isArray(parseValue.children)
         ) {
-          throw new Error(t('Invalid content'));
+          throw new Error('Invalid content');
         }
         setValueByIdx(focusIdx, parseValue);
       } catch (error: any) {
@@ -61,15 +66,15 @@ export function SourceCodePanel() {
           const parseBlock = BlockManager.getBlockByType(parseValue.type);
 
           if (!parseBlock?.validParentType.includes(parentBlock?.type)) {
-            throw new Error(t('Invalid content'));
+            throw new Error('Invalid content');
           }
         } else if (focusIdx !== getPageIdx()) {
-          throw new Error(t('Invalid content'));
+          throw new Error('Invalid content');
         }
 
         setValueByIdx(focusIdx, parseValue);
       } catch (error) {
-        Message.error(t('Invalid content'));
+        Message.error('Invalid content');
       }
     },
     [focusIdx, setValueByIdx, values]
@@ -98,7 +103,7 @@ export function SourceCodePanel() {
     <Collapse>
       <Collapse.Item
         name='json'
-        header={t('Json source')}
+        header='Json source'
         contentStyle={{ padding: '8px 13px' }}
       >
         <Input.TextArea
@@ -110,7 +115,7 @@ export function SourceCodePanel() {
       </Collapse.Item>
       <Collapse.Item
         name='mjml'
-        header={t('MJML source')}
+        header='MJML source'
         contentStyle={{ padding: '8px 13px' }}
       >
         <Input.TextArea

@@ -48,13 +48,13 @@ export function AddFont() {
                         <Stack.Item fill>
                           <TextField
                             name={`${focusIdx}.data.value.fonts.${index}.name`}
-                            label={t('Name')}
+                            label='Name'
                           />
                         </Stack.Item>
                         <Stack.Item fill>
                           <TextField
                             name={`${focusIdx}.data.value.fonts.${index}.href`}
-                            label={t('Href')}
+                            label='Href'
                           />
                         </Stack.Item>
                         <Stack

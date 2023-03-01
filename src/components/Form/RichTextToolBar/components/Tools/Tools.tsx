@@ -7,13 +7,13 @@ import {
   IconFont,
   useEditorProps,
   useFocusBlockLayout,
-  MergeTagBadge,
 } from 'easy-email-editor';
 import { FontFamily } from '../FontFamily';
 import { MergeTags } from '../MergeTags';
 import { useSelectionRange } from '@extensions/AttributePanel/hooks/useSelectionRange';
 import { IconBgColor } from './IconBgColor';
 import { IconFontColor } from './IconFontColor';
+import { MergeTagBadge } from 'easy-email-editor';
 import { BasicTools } from '../BasicTools';
 import { Unlink } from '../Unlink';
 import { StrikeThrough } from '../StrikeThrough';
@@ -30,16 +30,17 @@ export interface ToolsProps {
 export function Tools(props: ToolsProps) {
   const { mergeTags, enabledMergeTagsBadge } = useEditorProps();
   const { focusBlockNode } = useFocusBlockLayout();
-  const { selectionRange, restoreRange, setRangeByElement } = useSelectionRange();
+  const { selectionRange, restoreRange, setRangeByElement } =
+    useSelectionRange();
 
   const execCommand = useCallback(
     (cmd: string, val?: any) => {
       if (!selectionRange) {
-        console.error(t('No selectionRange'));
+        console.error('No selectionRange');
         return;
       }
       if (!focusBlockNode?.contains(selectionRange?.commonAncestorContainer)) {
-        console.error(t('Not commonAncestorContainer'));
+        console.error('Not commonAncestorContainer');
         return;
       }
 
@@ -62,7 +63,7 @@ export function Tools(props: ToolsProps) {
         }
         link.style.color = 'inherit';
         link.style.textDecoration = linkData.underline ? 'underline' : 'none';
-        link.setAttribute('href', linkData.link.trim());
+        link.setAttribute('href', linkData.link);
       } else if (cmd === 'insertHTML') {
         let newContent = val;
         if (enabledMergeTagsBadge) {
@@ -92,7 +93,7 @@ export function Tools(props: ToolsProps) {
       restoreRange,
       selectionRange,
       setRangeByElement,
-    ],
+    ]
   );
 
   const execCommandWithRange = useCallback(
@@ -104,10 +105,11 @@ export function Tools(props: ToolsProps) {
         props.onChange(html);
       }
     },
-    [props.onChange],
+    [props.onChange]
   );
 
-  const getPopoverMountNode = () => document.getElementById(FIXED_CONTAINER_ID)!;
+  const getPopoverMountNode = () =>
+    document.getElementById(FIXED_CONTAINER_ID)!;
 
   return (
     <div
@@ -175,7 +177,7 @@ export function Tools(props: ToolsProps) {
         <div className='easy-email-extensions-divider' />
         <Link
           currentRange={selectionRange}
-          onChange={values => execCommand('createLink', values)}
+          onChange={(values) => execCommand('createLink', values)}
           getPopupContainer={getPopoverMountNode}
         />
         <div className='easy-email-extensions-divider' />
@@ -188,41 +190,41 @@ export function Tools(props: ToolsProps) {
         <ToolItem
           onClick={() => execCommand('justifyLeft')}
           icon={<IconFont iconName='icon-align-left' />}
-          title={t('Align left')}
+          title='Align left'
         />
         <ToolItem
           onClick={() => execCommand('justifyCenter')}
           icon={<IconFont iconName='icon-align-center' />}
-          title={t('Align center')}
+          title='Align center'
         />
         <ToolItem
           onClick={() => execCommand('justifyRight')}
           icon={<IconFont iconName='icon-align-right' />}
-          title={t('Align right')}
+          title='Align right'
         />
         <div className='easy-email-extensions-divider' />
         <ToolItem
           onClick={() => execCommand('insertOrderedList')}
           icon={<IconFont iconName='icon-list-ol' />}
-          title={t('Orderlist')}
+          title='Orderlist'
         />
         <ToolItem
           onClick={() => execCommand('insertUnorderedList')}
           icon={<IconFont iconName='icon-list-ul' />}
-          title={t('Unorderlist')}
+          title='Unorderlist'
         />
         <div className='easy-email-extensions-divider' />
 
         <ToolItem
           onClick={() => execCommand('insertHorizontalRule')}
           icon={<IconFont iconName='icon-line' />}
-          title={t('Line')}
+          title='Line'
         />
         <div className='easy-email-extensions-divider' />
         <ToolItem
           onClick={() => execCommand('removeFormat')}
           icon={<IconFont iconName='icon-close' />}
-          title={t('Remove format')}
+          title='Remove format'
         />
         <div className='easy-email-extensions-divider' />
       </div>

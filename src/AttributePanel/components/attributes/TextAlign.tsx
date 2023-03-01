@@ -5,32 +5,26 @@ import { RadioGroupField } from '../../../components/Form';
 const options = [
   {
     value: 'left',
-    get label() {
-      return t('Left');
-    },
+    label: 'Left',
   },
   {
     value: 'center',
-    get label() {
-      return t('Center');
-    },
+    label: 'Center',
   },
   {
     value: 'right',
-    get label() {
-      return t('Right');
-    },
+    label: 'Right',
   },
 ];
 
-export function TextAlign({ name }: { name?: string }) {
+export function TextAlign({ name }: { name?: string; }) {
   const { focusIdx } = useFocusIdx();
 
   return useMemo(() => {
     return (
       <Stack>
         <RadioGroupField
-          label={t('Text align')}
+          label='Text align'
           name={name || `${focusIdx}.attributes.text-align`}
           options={options}
         />
