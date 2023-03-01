@@ -8,7 +8,8 @@ import styles from './index.module.scss';
 import { useExtensionProps } from '@extensions/components/Providers/ExtensionProvider';
 
 export function Blocks() {
-  const { categories, extensionActiveKey } = useExtensionProps();
+  const { categories, extensionActiveKey, onChangeExtensionActiveKey } =
+    useExtensionProps();
 
   const defaultActiveKey = useMemo(
     () => [...categories.filter(item => item.active).map(item => item.label)],
@@ -18,7 +19,9 @@ export function Blocks() {
   return (
     <Collapse
       defaultActiveKey={defaultActiveKey}
-      {...(extensionActiveKey ? { activeKey: extensionActiveKey } : {})}
+      {...(extensionActiveKey
+        ? { activeKey: extensionActiveKey, onChange: onChangeExtensionActiveKey }
+        : {})}
       style={{ paddingBottom: 30, minHeight: '100%' }}
     >
       {categories.map((cat, index) => {
