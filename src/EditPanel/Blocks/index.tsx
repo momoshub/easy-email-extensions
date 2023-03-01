@@ -20,7 +20,7 @@ export function Blocks() {
     <Collapse
       defaultActiveKey={defaultActiveKey}
       {...(extensionActiveKey
-        ? { activeKey: extensionActiveKey, onChange: onChangeExtensionActiveKey }
+        ? { activeKey: extensionActiveKey, onChange: () => onChangeExtensionActiveKey() }
         : {})}
       style={{ paddingBottom: 30, minHeight: '100%' }}
     >
@@ -30,7 +30,7 @@ export function Blocks() {
             <Collapse.Item
               key={index}
               contentStyle={{ padding: '0px 20px' }}
-              name={cat.key || cat.label}
+              name={cat?.key || cat?.label}
               header={cat.label}
             >
               <Space direction='vertical'>
@@ -56,7 +56,7 @@ export function Blocks() {
             <Collapse.Item
               key={index}
               contentStyle={{ padding: 0, paddingBottom: 0, paddingTop: 20 }}
-              name={cat.label}
+              name={cat?.key || cat?.label}
               header={cat.label}
             >
               <Grid.Row>
@@ -71,7 +71,7 @@ export function Blocks() {
           <Collapse.Item
             key={index}
             contentStyle={{ padding: 0, paddingBottom: 0, paddingTop: 20 }}
-            name={cat.label}
+            name={cat?.key || cat?.label}
             header={cat.label}
           >
             <Grid.Row>
