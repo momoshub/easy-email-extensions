@@ -12,7 +12,7 @@ export function Blocks() {
     useExtensionProps();
 
   const defaultActiveKey = useMemo(
-    () => [...categories.filter(item => item.active).map(item => item.label)],
+    () => [...categories.filter(item => item.active).map(item => item.key || item.label)],
     [categories],
   );
 
