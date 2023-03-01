@@ -30,7 +30,7 @@ export function Blocks() {
             <Collapse.Item
               key={index}
               contentStyle={{ padding: '0px 20px' }}
-              name={cat.label}
+              name={cat.key || cat.label}
               header={cat.label}
             >
               <Space direction='vertical'>
