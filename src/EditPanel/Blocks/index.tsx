@@ -20,7 +20,12 @@ export function Blocks() {
     <Collapse
       defaultActiveKey={defaultActiveKey}
       {...(extensionActiveKey
-        ? { activeKey: extensionActiveKey, onChange: () => onChangeExtensionActiveKey() }
+        ? {
+            activeKey: extensionActiveKey,
+            onChange: (key, keys, event) => {
+              onChangeExtensionActiveKey(key, keys, event);
+            },
+          }
         : {})}
       style={{ paddingBottom: 30, minHeight: '100%' }}
     >
