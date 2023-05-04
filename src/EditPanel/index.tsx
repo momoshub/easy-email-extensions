@@ -1,6 +1,6 @@
 import { Layout, Tabs } from '@arco-design/web-react';
 import { useEditorProps } from 'easy-email-editor';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Blocks } from './Blocks';
 import { BlockLayer } from '@extensions/BlockLayer';
 import { FullHeightOverlayScrollbars } from '@extensions/components/FullHeightOverlayScrollbars';
@@ -12,6 +12,7 @@ const TabPane = Tabs.TabPane;
 
 export type ExtraTab = {
   title: string;
+  showInPreviewMode?: boolean;
   content: ReactNode;
   key?: string;
 };
@@ -19,13 +20,15 @@ export type ExtraTab = {
 export function EditPanel({
   showSourceCode,
   extraTabs,
+  activeTab,
 }: {
   showSourceCode: boolean;
   extraTabs?: ExtraTab[];
+  activeTab?: string;
 }) {
   const { height } = useEditorProps();
   const { compact = true } = useExtensionProps();
-
+  let key = 0;
   return (
     <Layout.Sider
       className={styles.blocksPanel}
@@ -38,7 +41,7 @@ export function EditPanel({
       width={360}
     >
       <Tabs
-        defaultActiveTab='2'
+        defaultActiveTab={`${key}`}
         style={{ width: '100%', padding: 0 }}
         renderTabHeader={(_, DefaultHeader) => (
           <div className={styles.largeTabsHeader}>
@@ -46,37 +49,47 @@ export function EditPanel({
           </div>
         )}
       >
-        <TabPane
-          key='2'
-          title={t('Block')}
-        >
-          <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
-            <Blocks />
-          </FullHeightOverlayScrollbars>
-        </TabPane>
+        {activeTab === 'EDIT' && (
+          <TabPane
+            key={`${key++}`}
+            title={t('Block')}
+          >
+            <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
+              <Blocks />
+            </FullHeightOverlayScrollbars>
+          </TabPane>
+        )}
 
-        <TabPane
-          key='1'
-          title={t('Layer')}
-        >
-          <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
-            <div style={{ padding: 20 }}>
-              <BlockLayer />
-            </div>
-          </FullHeightOverlayScrollbars>
-        </TabPane>
-        {extraTabs?.map(tab => {
-          return (
-            <TabPane
-              key={tab.key || tab.title}
-              title={tab.title}
-            >
-              <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
-                <div style={{ padding: 20 }}>{tab.content}</div>
-              </FullHeightOverlayScrollbars>
-            </TabPane>
-          );
-        })}
+        {activeTab === 'EDIT' && (
+          <TabPane
+            key={`${key++}`}
+            title={t('Layer')}
+          >
+            <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
+              <div style={{ padding: 20 }}>
+                <BlockLayer />
+              </div>
+            </FullHeightOverlayScrollbars>
+          </TabPane>
+        )}
+        {extraTabs
+          ?.filter(
+            tab =>
+              (activeTab === 'EDIT' && !tab.showInPreviewMode) ||
+              (activeTab !== 'EDIT' && !!tab.showInPreviewMode),
+          )
+          ?.map(tab => {
+            return (
+              <TabPane
+                key={`${key++}`}
+                title={tab.title}
+              >
+                <FullHeightOverlayScrollbars height={`calc(${height} - 60px)`}>
+                  <div>{tab.content}</div>
+                </FullHeightOverlayScrollbars>
+              </TabPane>
+            );
+          })}
       </Tabs>
       {!compact && (
         <ConfigurationDrawer
