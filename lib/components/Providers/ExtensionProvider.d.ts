@@ -1,6 +1,6 @@
 import { BlockLayerProps } from '../../BlockLayer';
 import { ExtraTab } from '../../EditPanel';
-import React from 'react';
+import React, { ReactNode } from 'react';
 export interface ExtensionProps extends BlockLayerProps {
     categories: Array<{
         label: string;
@@ -11,6 +11,7 @@ export interface ExtensionProps extends BlockLayerProps {
             payload?: any;
             title?: string | undefined;
             onClick?: (data: any) => void;
+            icon?: ReactNode;
         }>;
         displayType?: 'grid';
     } | {
@@ -21,6 +22,7 @@ export interface ExtensionProps extends BlockLayerProps {
             payload?: any;
             title?: string | undefined;
             onClick?: (data: any) => void;
+            icon?: ReactNode;
         }>;
         displayType: 'column';
     } | {
@@ -30,6 +32,7 @@ export interface ExtensionProps extends BlockLayerProps {
         blocks: Array<{
             payload?: any;
             onClick?: (data: any) => void;
+            icon?: ReactNode;
         }>;
         displayType: 'widget';
     } | {
