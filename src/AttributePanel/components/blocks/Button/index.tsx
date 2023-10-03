@@ -14,7 +14,13 @@ import { FontFamily } from '../../attributes/FontFamily';
 import { TextDecoration } from '../../attributes/TextDecoration';
 import { LineHeight } from '../../attributes/LineHeight';
 import { LetterSpacing } from '../../attributes/LetterSpacing';
-import { Collapse, Grid, Popover, Space, Button as ArcoButton } from '@arco-design/web-react';
+import {
+  Collapse,
+  Grid,
+  Popover,
+  Space,
+  Button as ArcoButton,
+} from '@arco-design/web-react';
 import { TextField } from '../../../../components/Form';
 import { IconFont, useEditorProps, useFocusIdx } from 'easy-email-editor';
 import { AttributesPanelWrapper } from '../../attributes/AttributesPanelWrapper';
@@ -22,6 +28,7 @@ import { MergeTags } from '../../attributes';
 import { useField } from 'react-final-form';
 import { ClassName } from '../../attributes/ClassName';
 import { CollapseWrapper } from '../../attributes/CollapseWrapper';
+import { ThirdPartyLink } from '../../attributes/ThirdPartyLink';
 
 export function Button() {
   const { focusIdx } = useFocusIdx();
@@ -37,34 +44,34 @@ export function Button() {
         <Collapse.Item
           name='-1'
           header={t('Setting')}
+          style={{ paddingBottom: '1rem' }}
         >
-          <Space direction='vertical'>
-            <TextField
-              label={(
-                <Space>
-                  <span>{t('Content')}</span>
-                  {mergeTags && (
-                    <Popover
-                      trigger='click'
-                      content={(
-                        <MergeTags
-                          value={input.value}
-                          onChange={input.onChange}
-                        />
-                      )}
-                    >
-                      <ArcoButton
-                        type='text'
-                        icon={<IconFont iconName='icon-merge-tags' />}
+          <TextField
+            label={
+              <Space>
+                <span>{t('Button Text')}</span>
+                {mergeTags && (
+                  <Popover
+                    trigger='click'
+                    content={
+                      <MergeTags
+                        value={input.value}
+                        onChange={input.onChange}
                       />
-                    </Popover>
-                  )}
-                </Space>
-              )}
-              name={`${focusIdx}.data.value.content`}
-            />
-            <Link />
-          </Space>
+                    }
+                  >
+                    <ArcoButton
+                      type='text'
+                      icon={<IconFont iconName='icon-merge-tags' />}
+                    />
+                  </Popover>
+                )}
+              </Space>
+            }
+            name={`${focusIdx}.data.value.content`}
+          />
+
+          <ThirdPartyLink />
         </Collapse.Item>
 
         <Collapse.Item
