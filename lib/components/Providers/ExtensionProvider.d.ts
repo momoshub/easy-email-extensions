@@ -47,6 +47,7 @@ export interface ExtensionProps extends BlockLayerProps {
     extensionActiveKey?: string[];
     onChangeExtensionActiveKey?: any;
     extraTabs?: ExtraTab[];
+    thirdPartyLinks?: any[];
 }
 export declare const ExtensionContext: React.Context<ExtensionProps>;
 export declare const ExtensionProvider: React.FC<ExtensionProps>;
